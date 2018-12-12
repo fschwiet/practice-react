@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import DivWithMessage from './div-with-message'
 
 
 function App() {
     return (
-        <div> hello, world. </div>
+        <div>
+            <DivWithMessage message="hello, world."/>
+        </div>
+
     );
 }
 
