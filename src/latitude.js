@@ -17,8 +17,6 @@ class Latitude extends React.Component {
     }
 
     componentWillUnmount() {
-        //  this code doesn't actually get called yet with current usage, figure out how to
-        //  test it
         
         if (this._watchPositionID !== null) {
             window.navigator.geolocation.clearWatch(this._watchPositionID)
