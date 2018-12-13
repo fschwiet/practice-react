@@ -6,4 +6,8 @@ function DivWithMessage(props) {
     );
 }
 
+DivWithMessage.defaultProps = {
+    message: "this is a default propery"
+}
+
 export default DivWithMessage;
