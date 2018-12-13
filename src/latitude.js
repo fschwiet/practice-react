@@ -1,23 +1,31 @@
 import React from 'react'
 
 class Latitude extends React.Component {
-    constructor(props) {
-        super(props)
+    
+    state = { latitude: null, error: null}
+    _watchPositionID = null
 
-        this.state = {
-            latitude: null, 
-            error: null }
-
-        window.navigator.geolocation.getCurrentPosition(
+    componentDidMount() {
+        this._watchPositionID = window.navigator.geolocation.watchPosition(
             position => {
-                console.log(position);
-                this.setState({ latitude: position.coords.latitude});
+                this.setState({ latitude: position.coords.latitude, error: null});
             },
             error => {
-                this.setState({error: error.message || "Unspecified error."})
+                this.setState({ latitude: null, error: error.message || "Unspecified error."})
             }
         )
     }
+
+    componentWillUnmount() {
+        //  this code doesn't actually get called yet with current usage, figure out how to
+        //  test it
+        
+        if (this._watchPositionID !== null) {
+            window.navigator.geolocation.clearWatch(this._watchPositionID)
+            this._watchPositionID = null
+        }
+    }
+    
     render() {
 
         if (this.state.latitude !== null)
