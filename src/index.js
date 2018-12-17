@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom'
 import DivWithMessage from './div-with-message'
 import Latitude from './latitude'
 import ComponentLifecycleLogger from './component-lifecycle-logger'
+import { createStore } from 'redux'
+import {  Provider } from 'react-redux'
 
+
+var emptyReducer = (state, action) => state;
+
+var store = createStore(emptyReducer);
 
 class App extends React.Component {
 
@@ -26,15 +32,16 @@ class App extends React.Component {
 
 
         return (
-            <div>
-                <DivWithMessage message="hello, world."/>
-    
-                <Latitude/>
+            <Provider store={store}>
+                <div>
+                    <DivWithMessage message="hello, world."/>
 
-                {controlToTestUnmount}
+                    <Latitude/>
 
-            </div>
-    
+                    {controlToTestUnmount}
+
+                </div>
+            </Provider>
         );
     }
 }
