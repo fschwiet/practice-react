@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom'
 import DivWithMessage from './div-with-message'
 import Latitude from './latitude'
 import ComponentLifecycleLogger from './component-lifecycle-logger'
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
 import {  Provider } from 'react-redux'
 
 
-var emptyReducer = (state, action) => state;
+var emptyReducer = (state = null, action) => state;
 
-var store = createStore(emptyReducer);
+var store = createStore(combineReducers({
+    empty : emptyReducer
+}));
 
 class App extends React.Component {
 
